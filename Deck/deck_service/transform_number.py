@@ -41,23 +41,6 @@ def transform(name):
     ten = 0
     hund = 0
 
-    # for num in numbers:
-    #     units = unit.get(num, None)
-    #     if units is not None:
-    #         ten += units
-    #     elif num == 'hundred' and ten != 0:
-    #         ten *= 100
-    #
-    #     elif num == 'thousand':
-    #         ten *= 1000
-    #         hund += ten
-    #         ten = 0
-    #     elif num == 'million':
-    #         ten *= 1000000
-    #         hund += ten
-    #         ten = 0
-    #     else:
-    #         return all_name
     for num in numbers:
         units = unit.get(num, None)
         if units is not None:
@@ -71,6 +54,4 @@ def transform(name):
         else:
             return all_name
 
-
-    print ten+hund
     return ten+hund

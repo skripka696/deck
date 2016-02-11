@@ -12,9 +12,11 @@ class ViewDeck(viewsets.ModelViewSet):
 
     def list(self, request):
         ship = request.GET.get('ship')
-        name = transform(request.GET.get('name'))
-
-        queryset = Deck.objects.filter(name__icontains=name, ship=ship)
+        names = transform(request.GET.get('name'))
+        names = names.split()
+        queryset = Deck.objects.all()
+        for name in names:
+            queryset = queryset.filter(name__icontains=name, ship=ship)
         if not queryset.exists():
             queryset = Deck.objects.filter(name='Other', ship=5)
         serializer = DeckSerializer(queryset, many=True)
