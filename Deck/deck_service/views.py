@@ -20,6 +20,7 @@ class ViewDeck(viewsets.ModelViewSet):
         if not queryset.exists():
             queryset = Deck.objects.filter(name='Other', ship=5)
         serializer = DeckSerializer(queryset, many=True)
+        # serializer = DeckSerializer(queryset.first())
         return Response(serializer.data)
 
 
