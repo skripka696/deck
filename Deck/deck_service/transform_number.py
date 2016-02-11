@@ -30,16 +30,47 @@ def transform(name):
         'ninety': 90,
     }
 
+    big = {
+        'thousand': 1000,
+        'million': 10 ** 6,
+    }
+    all_name = name
+
     numbers = [name.lower() for name in name.split()]
 
     ten = 0
+    hund = 0
+
+    # for num in numbers:
+    #     units = unit.get(num, None)
+    #     if units is not None:
+    #         ten += units
+    #     elif num == 'hundred' and ten != 0:
+    #         ten *= 100
+    #
+    #     elif num == 'thousand':
+    #         ten *= 1000
+    #         hund += ten
+    #         ten = 0
+    #     elif num == 'million':
+    #         ten *= 1000000
+    #         hund += ten
+    #         ten = 0
+    #     else:
+    #         return all_name
     for num in numbers:
         units = unit.get(num, None)
         if units is not None:
             ten += units
         elif num == 'hundred' and ten != 0:
             ten *= 100
+        elif big.get(num, None):
+            ten *= big.get(num, None)
+            hund += ten
+            ten = 0
         else:
-            return name
+            return all_name
 
-    return ten
+
+    print ten+hund
+    return ten+hund

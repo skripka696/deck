@@ -8,11 +8,15 @@ class TestWordToNumber(TestCase):
         self.number1 = 'one'
         self.number2 = 'twenty two'
         self.number3 = 'one hundred fifty seven'
+        self.number4 = 'nine hundred ninety nine thousand nine hundred ninety nine'
+        self.number5 = 'bla bla bla'
 
     def test_number(self):
         self.assertEqual(1, transform(self.number1))
         self.assertEqual(22, transform(self.number2))
         self.assertEqual(157, transform(self.number3))
+        self.assertEqual(999999, transform(self.number4))
+        self.assertEqual('bla bla bla', transform(self.number5))
 
 
 class TestNotEmptyRequest(TestCase):

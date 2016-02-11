@@ -11,8 +11,8 @@ class ViewDeck(viewsets.ModelViewSet):
     serializer_class = DeckSerializer
 
     def list(self, request):
-        ship = request.GET.get('ship', '0')
-        name = transform(request.GET.get('name', 'Other'))
+        ship = request.GET.get('ship')
+        name = transform(request.GET.get('name'))
 
         queryset = Deck.objects.filter(name__icontains=name, ship=ship)
         if not queryset.exists():
