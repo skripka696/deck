@@ -34,6 +34,7 @@ BIG_NUMBER_MAPPING = {
 }
 HUNDRED = 'hundred'
 
+
 class NumberTransformer(object):
     """
     Transforms words to number
@@ -43,6 +44,7 @@ class NumberTransformer(object):
     def transform(cls, name):
         ten = 0
         hund = 0
+        rez = []
 
         for num in cls._split_name(name):
             units = NUMBER_MAPPING.get(num, None)
@@ -57,11 +59,14 @@ class NumberTransformer(object):
                 ten *= BIG_NUMBER_MAPPING.get(num)
                 hund += ten
                 ten = 0
-                continue
 
-            return name
+            else:
+                rez.append(num)
 
-        return ten + hund
+        if ten + hund != 0:
+            rez.append(ten + hund)
+
+        return rez
 
     @classmethod
     def _is_big(cls, num):
@@ -78,3 +83,4 @@ class NumberTransformer(object):
     @staticmethod
     def _split_name(name):
         return [word.lower() for word in name.split()]
+

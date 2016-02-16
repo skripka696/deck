@@ -8,5 +8,5 @@ list_deck = views.ViewDeck.as_view({
 urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'api/v1/match-deck/', list_deck)
-
 ]
+

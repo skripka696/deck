@@ -34,13 +34,14 @@ def transform(name):
         'thousand': 1000,
         'million': 10 ** 6,
     }
+
     all_name = name
 
     numbers = [name.lower() for name in name.split()]
 
     ten = 0
     hund = 0
-
+    a = []
     for num in numbers:
         units = unit.get(num, None)
         if units is not None:
@@ -52,6 +53,8 @@ def transform(name):
             hund += ten
             ten = 0
         else:
-            return all_name
+            a.append(num)
 
-    return ten+hund
+    if ten+hund != 0:
+        a.append(ten+hund)
+    return a
