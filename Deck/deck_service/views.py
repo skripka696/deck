@@ -16,8 +16,8 @@ class ViewDeck(viewsets.ModelViewSet):
     def list(self, request):
         partial = request.GET.get('partial')
         ship = request.GET.get('ship')
-        n = request.GET.get('name')
-        queryset = FilterShipDeck.get_deck(ship=ship, name=n)
+        name = request.GET.get('name')
+        queryset = FilterShipDeck.get_decks(ship=ship, name=name)
 
         if partial:
             serializer = DeckSerializer(queryset, many=True)
@@ -25,4 +25,3 @@ class ViewDeck(viewsets.ModelViewSet):
             serializer = DeckSerializer(queryset.first())
 
         return Response(serializer.data)
-
